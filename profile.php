@@ -37,7 +37,7 @@ if(isset($_POST['post_message'])) {
 		$message_obj->sendMessage($username, $body, $date);
 	}
 
-	$link = '#profileTags a[href="#messages_div"]';
+	$link = '#profileTabs a[href="#messages_div"]';
 	echo "<script>
 			$(function() {
 				$('" . $link ."').tab('show');

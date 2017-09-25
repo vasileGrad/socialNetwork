@@ -19,7 +19,7 @@
         <entry file="file://$PROJECT_DIR$/comment_frame.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="308">
-              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding>
                 <marker date="1504976028929" expanded="true" signature="479:529" ph="SELECT * FRO... users" />
                 <marker date="1504976028929" expanded="true" signature="996:1051" ph="SELECT added... posts" />
@@ -155,15 +155,15 @@
       <updated>1506094657647</updated>
       <workItem from="1506094658960" duration="143000" />
       <workItem from="1506094823637" duration="29000" />
-      <workItem from="1506094866477" duration="676000" />
+      <workItem from="1506094866477" duration="1868000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="848000" />
+    <option name="totallyTimeSpent" value="2040000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="663" y="202" width="705" height="585" extended-state="0" />
+    <frame x="663" y="202" width="705" height="585" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35813954" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -199,7 +199,7 @@
     <entry file="file://$PROJECT_DIR$/comment_frame.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
             <marker date="1504976028929" expanded="true" signature="479:529" ph="SELECT * FRO... users" />
             <marker date="1504976028929" expanded="true" signature="996:1051" ph="SELECT added... posts" />
