@@ -49,7 +49,7 @@ if(isset($_SESSION['username'])){
 			<a href="index.php">
 				<i class="fa fa-home fa-lg"></i></a>
 			<!-- javascript:void(0) = execute some javascript -->
-			<a href="javascript:void(0);" onclick="getDropdownData(<?php echo $userLoggedIn; ?>, 'message')">
+			<a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')">
 				<i class="fa fa-envelope fa-lg"></i>
 			</a>
 			<a href="#">

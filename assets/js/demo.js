@@ -26,3 +26,36 @@ function getUsers(value, user) {
 		// .results - is on messages.php  // echo "<div class='results'></div>";
 	});
 }
+
+function getDropDownData(user, type) {
+	// checking the css if the height value is 0
+	if($(".dropdown_data_windo").css("height") == "0px") {
+
+		var pageName;
+
+		if(type == 'notification') {
+
+		}else if (type == 'message') {
+			pageName = "ajax_load_messages.php"; // this is the page that we are sending to
+			$("span").remove("#unread_message");
+		}
+
+		// creat the ajax request to retrieve the messages
+		var ajaxreq = $.ajax({
+			url; "includes/handlers/" + pagName,
+			type: "POST",
+			data: "page=1&user=" + user,
+			cache: false,
+
+			success: function(response) {
+				$(".dropdown_data_window").html(response);
+				$(".dropdown_data_window").css({"padding" : "0px", "height": "280px"});
+				$("#dropdown_data_type").val(type);
+			}
+
+		});
+	}else { // If it is open, the height is not 0
+		$(".dropdown_data_window").html("");
+		$(".dropdown_data_window").css({"padding" : "0px", "height": "0px"});		
+	}
+}
