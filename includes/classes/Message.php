@@ -177,6 +177,84 @@ class Message {
 
 	}
 
+	public function getConvosDropdown($data, $limit) {
+
+		$page = $data['page'];
+		$userLoggedIn = $this->user_obj->getUsername();
+		$return_string = "";
+		$convos = array(); // Initialises with an empty array
+
+		// If it is the first page
+		if($page == 1) 
+			start = 0;
+		else  // If it is not the first page
+			start = ($page -1) * limit;
+
+		// set the viewed column to 'yes' in the messages database
+		$set_viewed_query = mysqli_query($this->con, "UPDATE messages SET viewed='yes' WHERE user_to='$userLoggedIn'");
+
+		$query = mysqli_query($this->con, "SELECT user_to, user_from FROM messages WHERE user_to='$userLoggedIn' OR user_from='userLoggedIn' ORDER BY id DESC");
+
+		while($row = mysqli_fetch_array($query)) {
+			// We gonna add the name of the person's name to this array $convos
+			$user_to_push = ($row['user_to'] != $userLoggedIn) ? $row['user_to'] : $row['user_from']; // we push the other one user
+
+			// We check that the username is not in the array 
+			if(!in_array($user_to_push, $convos)) {
+				array_push($convos, $user_to_push); // add the usernames into the array
+				// we have all the conversations that user had
+			}
+		}
+
+		$num_iterations = 0; // Number of messages checked
+		$count = 1; // Number of messages posted
+
+		foreach ($convos as $username) {
+			
+			// If hasn't reached the start point yet than continue
+			// num_iterations++ - first uses this value than increace it
+			if($num_iterations++ < $start)
+				continue;
+
+			// If we've reached the limit
+			if($count > $limit)
+				break;
+			else
+				$count++;
+
+			$is_unread_query = mysqli_query($this->con, "SELECT opened FROM messages WHERE user_to='userLoggedIn' AND user_from='username' ORDER BY id DESC");
+			$row = mysqli_fetch_array($is_unread_query); // we wonna get 1 result 
+
+			// All the unread messages will be highlighted to this color
+			// If has been read don't do anything
+			$style = ($row['opened'] == 'no') ? "background-color: #DDEFF;": "";
+
+
+			$user_found_obj = new User($this->con, $username); // the user object with that object
+			// get the latest messeges between these two users
+
+			$latest_message_details = $this->getLatestMessage($userLoggedIn, $username);
+			// $this->getLatestMessage() - allows to call a different function within this class
+
+			// Adding dots
+			// If the length of the body id >= 12 characters than put ...
+			$dots = (strlen($latest_message_details[1]) >= 12) ? "..." : "";
+			$split = str_split($latest_message_details[1], 12); // split the amount of characters that you give it
+			$split = $split[0] . $dots;  // The first 12 characters and than...
+
+			$return_string .= "<a href='messages.php?u=$username'> <div class='user_found_messages'>
+								<img src='" . $user_found_obj->getProfilePic() . "' style='border-radius: 5px; margin-right: 5px;'>
+								" . $user_found_obj->getFirstAndLastName() . "
+								<span class='timestamp_smaller' id='grey'> " . $latest_message_details[2] . "</span> 
+								<p id='grey' style='margin: 0;'>" . $latest_message_details[0] . $split . " </p>
+								</div>
+								</a>";
+
+		}
+
+		return $return_string;
+	}
+
 }
 
 ?>
