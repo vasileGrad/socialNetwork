@@ -29,7 +29,8 @@ function getUsers(value, user) {
 
 function getDropDownData(user, type) {
 	// checking the css if the height value is 0
-	if($(".dropdown_data_windo").css("height") == "0px") {
+
+	if($(".dropdown_data_window").css("height") == "0px") {
 
 		var pageName;
 
@@ -42,20 +43,20 @@ function getDropDownData(user, type) {
 
 		// creat the ajax request to retrieve the messages
 		var ajaxreq = $.ajax({
-			url; "includes/handlers/" + pagName,
+			url: "includes/handlers/" + pagName,
 			type: "POST",
 			data: "page=1&userLoggedIn=" + user,
 			cache: false,
 
 			success: function(response) {
 				$(".dropdown_data_window").html(response);
-				$(".dropdown_data_window").css({"padding" : "0px", "height": "280px"});
+				$(".dropdown_data_window").css({"padding" : "0px", "height" : "280px", "border" : "1px solid #DADADA"});
 				$("#dropdown_data_type").val(type);
 			}
 
 		});
 	}else { // If it is open, the height is not 0
 		$(".dropdown_data_window").html("");
-		$(".dropdown_data_window").css({"padding" : "0px", "height": "0px"});		
+		$(".dropdown_data_window").css({"padding" : "0px", "height" : "0px", "border" : "none"});		
 	}
 }

@@ -186,9 +186,9 @@ class Message {
 
 		// If it is the first page
 		if($page == 1) 
-			start = 0;
+			$start = 0;
 		else  // If it is not the first page
-			start = ($page -1) * limit;
+			$start = ($page -1) * limit;
 
 		// set the viewed column to 'yes' in the messages database
 		$set_viewed_query = mysqli_query($this->con, "UPDATE messages SET viewed='yes' WHERE user_to='$userLoggedIn'");
@@ -242,7 +242,8 @@ class Message {
 			$split = str_split($latest_message_details[1], 12); // split the amount of characters that you give it
 			$split = $split[0] . $dots;  // The first 12 characters and than...
 
-			$return_string .= "<a href='messages.php?u=$username'> <div class='user_found_messages'>
+			$return_string .= "<a href='messages.php?u=$username'> 
+			<div class='user_found_messages' style='" . $style ."'>
 								<img src='" . $user_found_obj->getProfilePic() . "' style='border-radius: 5px; margin-right: 5px;'>
 								" . $user_found_obj->getFirstAndLastName() . "
 								<span class='timestamp_smaller' id='grey'> " . $latest_message_details[2] . "</span> 
@@ -251,6 +252,14 @@ class Message {
 								</a>";
 
 		}
+
+		// If posts were loaded
+		if($count > $limit) // If we reached the limit
+			// .= return the value and add to it
+			// this is the return string that it tells that we need to return more strings or not 
+			$return_string .= "<input type='hidden' class='nextPageDropDownData' value='"  . ($page + 1) ."'> <input type='hidden' class='noMoreDropDownData' value='false'>";
+		else // if there are posts
+			$return_string .= "<input type='hidden' class='noMoreDropDownData' value='true'><p style='text-align: center;'>No more messages to load!</p>";
 
 		return $return_string;
 	}

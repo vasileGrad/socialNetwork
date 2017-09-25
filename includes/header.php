@@ -1,6 +1,5 @@
 <?php
 require 'config/config.php';
-
 if(isset($_SESSION['username'])){
 	$userLoggedIn = $_SESSION['username'];
 	$user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$userLoggedIn'");
@@ -49,7 +48,7 @@ if(isset($_SESSION['username'])){
 			<a href="index.php">
 				<i class="fa fa-home fa-lg"></i></a>
 			<!-- javascript:void(0) = execute some javascript -->
-			<a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')">
+			<a href="javascript:void(0);"onclick="getDropDownData()">
 				<i class="fa fa-envelope fa-lg"></i>
 			</a>
 			<a href="#">
@@ -66,7 +65,7 @@ if(isset($_SESSION['username'])){
 			</a>
 		</nav>
 
-		<div class="dropdown_data_window"></div>
+		<div class="dropdown_data_window" style="height:0px; border:none;"></div>
 		<input type="hidden" id="dropdown_data_type" value="">
 
 	</div>
