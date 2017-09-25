@@ -44,7 +44,7 @@ function getDropDownData(user, type) {
 		var ajaxreq = $.ajax({
 			url; "includes/handlers/" + pagName,
 			type: "POST",
-			data: "page=1&user=" + user,
+			data: "page=1&userLoggedIn=" + user,
 			cache: false,
 
 			success: function(response) {
